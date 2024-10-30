@@ -87,13 +87,13 @@ RSpec.describe Museum do
       patron_2 = Patron.new("Sally", 20)
       patron_3 = Patron.new("Johnny", 5)
 
-      expect(dmnv.patrons).to eq([])
+      expect(dmns.patrons).to eq([])
 
       dmns.admit(patron_1)
       dmns.admit(patron_2)
       dmns.admit(patron_3)
 
-      expect(dmnv.patrons).to eq([patron_1, patron_2, patron_3])
+      expect(dmns.patrons).to eq([patron_1, patron_2, patron_3])
     end
   end
 
