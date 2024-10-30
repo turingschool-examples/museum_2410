@@ -29,9 +29,9 @@ class Museum
 
   def patrons_by_exhibit_interest
     by_exhibit = {}
-    exhibits.each do |exhibit|
+    @exhibits.each do |exhibit|
       by_exhibit[exhibit] = []
-      patrons.each do |patron|
+      @patrons.each do |patron|
         if patron.interests.include?(exhibit.name)
           by_exhibit[exhibit] << patron
         end
@@ -39,4 +39,11 @@ class Museum
     end
     return by_exhibit
   end
+
+  def ticket_lottery_contestants(exhibit)
+    patrons_by_exhibit = patrons_by_exhibit_interest
+    patrons_by_exhibit[exhibit]
+  end
+
+  
 end
