@@ -18,16 +18,16 @@ RSpec.configure do |config|
 
     describe "#spending_money" do
         it "can display patron spending money" do
-            expect(@patron.spending_money).to eq(20)
+            expect(@patron_1.spending_money).to eq(20)
         end
     end
 
-    describe "#interets" do
+    describe "#interests" do
         it "can add interests to the interests array" do
-            expect(@patron_1.interets).to eq([])
-            patron_1.add_interest("Dead Sea Scrolls")
-            patron_1.add_interest("Gems and Minerals")
-            expect(@patron_1.interets).to eq(["Dead Sea Scrolls", "Gems and Minerals"])
+            expect(@patron_1.interests).to eq([])
+            @patron_1.add_interest("Dead Sea Scrolls")
+            @patron_1.add_interest("Gems and Minerals")
+            expect(@patron_1.interests).to eq(["Dead Sea Scrolls", "Gems and Minerals"])
         end
     end
 end
