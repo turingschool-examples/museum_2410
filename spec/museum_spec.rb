@@ -205,7 +205,7 @@ RSpec.describe Museum do
 
       allow(dmns).to receive(:draw_lottery_winner).with(dead_sea_scrolls).and_return("Bob")
       result = dmns.announce_lottery_winner(dead_sea_scrolls)
-      expect(result).to eq("Bob is the winner!")
+      expect(result).to eq("Bob has won the Dead Sea Scrolls lottery!")
     end
 
     it 'returns a message if there are no contestants' do
