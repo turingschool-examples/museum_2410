@@ -24,4 +24,28 @@ RSpec.describe Patron do
       expect(patron.interests).to eq([])
     end
   end
+
+  describe '#add_interest' do
+    it 'adds an interest to the patrons list of interests' do
+      patron = Patron.new("Lisa", 50)
+
+      expect(patron.interests).to eq([])
+      patron.add_interest("Dead Sea Scrolls")
+      expect(patron.interests).to eq(["Dead Sea Scrolls"])
+      patron.add_interest("Gems and Minerals")
+      expect(patron.interests).to eq(["Dead Sea Scrolls", "Gems and Minerals"])
+    end
+
+    it 'does not affect other patrons' do
+      patron = Patron.new("Lisa", 50)
+      patron2 = Patron.new("Bob", 20)
+
+      expect(patron.interests).to eq([])
+      expect(patron2.interests).to eq([])
+
+      patron.add_interest("Dead Sea Scrolls")
+      expect(patron.interests).to eq(["Dead Sea Scrolls"])
+      expect(patron2.interests).to eq([])
+    end
+  end
 end
