@@ -13,4 +13,26 @@ class Museum
   def recommend_exhibits(patron)
     
   end
+
+  def admit
+    
+  end
+
+  def patrons
+    
+  end
+
+  def patrons_by_exhibit_interest
+    
+  end
+
+  def ticket_lottery_contestants
+    
+  end
+
+  def draw_lottery_winner(exhibit)
+    
+  end
+
+  def announce_lottery_winner(lottery_winner)
 end

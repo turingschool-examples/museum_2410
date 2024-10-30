@@ -29,7 +29,6 @@ RSpec.describe Exhibit do
       expect(@gems_and_minerals.cost).to eq(0)
       expect(@dead_sea_scrolls.cost).to eq(10)
       expect(@imax.cost).to eq(15)
-
     end
   end
 end

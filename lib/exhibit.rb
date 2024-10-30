@@ -1,6 +1,10 @@
 class Exhibit
-  def initialize
-    
+  
+
+  def initialize({name, cost})
+  @name = name  
+  @cost = cost
   end
+    
   
 end
