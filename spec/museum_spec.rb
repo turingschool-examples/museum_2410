@@ -162,8 +162,14 @@ RSpec.describe Museum do
   describe '#announce_lottery_winner' do
     it 'announces the lottery winner returned by #draw_lottery_winner' do
       allow(dmns).to receive(:draw_lottery_winner).with(dead_sea_scrolls).and_return("Bob")
-      winner = dmns.announce_lottery_winner(dead_sea_scrolls)
+      result = dmns.announce_lottery_winner(dead_sea_scrolls)
       expect(result).to eq("Bob is the winner!")
+    end
+
+    it 'returns a message if there are no contestants' do
+      allow(dmns).to receive(:draw_lottery_winner).with(gems_and_minerals).and_return(nil)
+      result = dmns.announce_lottery_winner(gems_and_minerals)
+      expect(result).to eq("No winners for this lottery!")
     end
   end
 end
