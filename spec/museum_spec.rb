@@ -156,4 +156,12 @@ RSpec.describe Museum do
       expect(["Johnny", "Bob"]).to include(winner)
     end
   end
+
+  describe '#announce_lottery_winner' do
+    it 'announces the lottery winner returned by #draw_lottery_winner' do
+      allow(dmns).to receive(:draw_lottery_winner).with(dead_sea_scrolls).and_return("Bob")
+      winner = dmns.announce_lottery_winner(dead_sea_scrolls)
+      expect(result).to eq("Bob is the winner!")
+    end
+  end
 end
