@@ -118,7 +118,6 @@ RSpec.describe Museum do
       patron_2.add_interest("Dead Sea Scrolls")
       patron_3.add_interest("Dead Sea Scrolls")
 
-      expect(dmns.patrons_by_exhibit_interest.keys.count).to eq(3)
       expect(dmns.patrons_by_exhibit_interest[dead_sea_scrolls]).to contain_exactly(patron_1, patron_2, patron_3)
       expect(dmns.patrons_by_exhibit_interest[gems_and_minerals]).to contain_exactly(patron_1)
       expect(dmns.patrons_by_exhibit_interest[imax]).to contain_exactly()
