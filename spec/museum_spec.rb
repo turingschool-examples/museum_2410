@@ -74,4 +74,35 @@ RSpec.configure do |config|
         end
     end
 
+    describe "#patrons_by_exhibit_interest" do
+        it "can return a hash where each key is an exhibit and the value is an array of the patrons interest" do
+            @dmns.add_exhibit(@gems_and_minerals)
+            @dmns.add_exhibit(@dead_sea_scrolls)
+            @dmns.add_exhibit(@imax)
+
+            #Bob
+            @patron_1.add_interest("Gems and Minerals")
+            @patron_1.add_interest("Dead Sea Scrolls")
+            
+            #Sally
+            @patron_2.add_interest("Dead Sea Scrolls")
+
+            #John
+            @patron_3.add_interest("Dead Sea Scrolls")
+
+            @dmns.admit(@patron_1)
+            @dmns.admit(@patron_2)
+            @dmns.admit(@patron_3)
+            @dmns.patrons
+
+            expect(@dmns.patrons_by_exhibit_interest).to be_a(Hash)
+            expect(@dmns.patrons_by_exhibit_interest).to eq(
+                {
+                    gems_and_minerals: [@patron_1],
+                    dead_sea_scrolls: [@patron_1, @patron_2, @patron_3],
+                    imax: []
+                }
+            )
+        end
+    end
 end
