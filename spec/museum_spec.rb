@@ -147,13 +147,13 @@ RSpec.describe Museum do
 
       expect(dmns.ticket_lottery_contestants(dead_sea_scrolls)).to contain_exactly(patron_1, patron_3)
     end
+  end
 
-    describe '#draw_lottery_winner' do
-      it 'returns a random name from the #ticket_lottery_contestants method output' do
-        allow(dmns).to receive(:ticket_lottery_contestants).with(dead_sea_scrolls).and_return("Johnny", "Bob")
-        winner = dmns.draw_lottery_winner(dead_sea_scrolls)
-        expect(["Johnny", "Bob"]).to include(winner)
-      end
+  describe '#draw_lottery_winner' do
+    it 'returns a random name from the #ticket_lottery_contestants method output' do
+      allow(dmns).to receive(:ticket_lottery_contestants).with(dead_sea_scrolls).and_return("Johnny", "Bob")
+      winner = dmns.draw_lottery_winner(dead_sea_scrolls)
+      expect(["Johnny", "Bob"]).to include(winner)
     end
   end
 end
