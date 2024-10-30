@@ -44,6 +44,19 @@ class Museum
     patrons_by_exhibit = patrons_by_exhibit_interest
     patrons_by_exhibit[exhibit]
   end
-
+  
+  def draw_lottery_winner(exhibit)
+    contestant_objects = ticket_lottery_contestants(exhibit)
+    contestants_array = []
+    contestant_objects.each do |contestant|
+      contestants_array << contestant.name
+    end
+    
+    if !contestants_array.empty?
+      return contestants_array.sample
+    else
+      return nil
+    end
+  end
   
 end
