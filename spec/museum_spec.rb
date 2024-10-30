@@ -15,6 +15,7 @@ RSpec.describe Museum do
 
       expect(dmns.name).to eq("Denver Museum of Nature and Science")
       expect(dmns.exhibits).to eq([])
+      expect(dmns.patrons).to eq([])
     end
 
     it 'can have a different attribute' do
@@ -22,6 +23,7 @@ RSpec.describe Museum do
 
       expect(vlm.name).to eq("Virginia Living Museum")
       expect(vlm.exhibits).to eq([])
+      expect(vlm.patrons).to eq([])
     end
   end
 
@@ -74,6 +76,23 @@ RSpec.describe Museum do
 
       expect(dmns.recommend_exhibits(patron_1)).to eq([dead_sea_scrolls, gems_and_minerals])
       expect(dmns.recommend_exhibits(patron_2)).to eq([imax])
+    end
+  end
+
+  describe '#admit' do
+    it 'adds patrons to its list of patrons' do
+      dmns = Museum.new("Denver Museum of Nature and Science")
+      patron_1 = Patron.new("Bob", 20)
+      patron_2 = Patron.new("Sally", 20)
+      patron_3 = Patron.new("Johnny", 5)
+
+      expect(dmnv.patrons).to eq([])
+
+      dmns.admit(patron_1)
+      dmns.admit(patron_2)
+      dmns.admit(patron_3)
+
+      expect(dmnv.patrons).to eq([patron_1, patron_2, patron_3])
     end
   end
 end
