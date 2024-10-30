@@ -14,6 +14,7 @@ RSpec.configure do |config|
         @imax = Exhibit.new({name: "IMAX",cost: 15})
         @patron_1 = Patron.new("Bob", 20)
         @patron_2 = Patron.new("Sally", 20)
+        @patron_3 = Patron.new("Johnny", 5)
     end
 
     describe "#name" do
@@ -59,4 +60,18 @@ RSpec.configure do |config|
             expect(@dmns.recommend_exhibits(@patron_2)).to eq([@imax])
         end
     end
+
+    describe "#admit" do
+        it "can add patron to patrons array" do
+            expect(@dmns.patrons).to eq([])
+
+            @dmns.admit(@patron_1)
+            @dmns.admit(@patron_2)
+            @dmns.admit(@patron_3)
+            
+            expect(@dmns.patrons.size).to eq(3)
+            expect(@dmns.patrons).to match_array([@patron_1, @patron_2, @patron_3])
+        end
+    end
+
 end
