@@ -174,7 +174,7 @@ RSpec.describe Museum do
       dmns.admit(patron_2)
       dmns.admit(patron_3)
 
-      allow(dmns).to receive(:ticket_lottery_contestants).with(dead_sea_scrolls).and_return("Johnny", "Bob")
+      allow(dmns).to receive(:ticket_lottery_contestants).with(dead_sea_scrolls).and_return(["Johnny", "Bob"])
       winner = dmns.draw_lottery_winner(dead_sea_scrolls)
       expect(["Johnny", "Bob"]).to include(winner)
     end
