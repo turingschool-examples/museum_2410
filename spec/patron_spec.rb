@@ -1,5 +1,5 @@
+require './lib/exhibit'
 require './lib/patron'
-require 'rspec'
 
 RSpec.describe Patron do
   describe "instantiation" do

@@ -1,5 +1,5 @@
 require './lib/exhibit'
-require 'rspec'
+require './lib/patron'
 
 RSpec.describe Exhibit do
   it 'has a name' do
