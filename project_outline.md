@@ -27,3 +27,19 @@
 
 - I’ll use structured comments and annotations within the code, but I plan to hold off on detailed commenting until I have all functionality implemented.
 - I’ll consider adding additional markdown files to document each class and test structure to provide clarity and organization.
+
+
+Iteration 3: Exhibit Interests and Lottery
+
+	•	Objectives:
+	•	Extend the Museum class to handle:
+	•	patrons_by_exhibit_interest: Returns a hash mapping exhibits to patrons interested in them.
+	•	ticket_lottery_contestants: Identifies patrons with insufficient funds but interest in specific exhibits.
+	•	draw_lottery_winner and announce_lottery_winner: Randomly select a lottery winner from contestants.
+
+Iteration 4: Admission and Revenue Tracking
+
+	•	Objectives:
+	•	Update Museum so patrons can attend exhibits based on available funds and interests, prioritizing higher-cost exhibits.
+	•	Track revenue and generate a patrons_of_exhibits hash showing which patrons attended each exhibit.
+	•	Implement a revenue method to calculate the total collected from patron spending.
