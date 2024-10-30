@@ -153,6 +153,27 @@ RSpec.describe Museum do
 
   describe '#draw_lottery_winner' do
     it 'returns a random name from the #ticket_lottery_contestants method output' do
+      dmns = Museum.new("Denver Museum of Nature and Science")
+      gems_and_minerals = Exhibit.new({name: "Gems and Minerals", cost: 0})
+      dead_sea_scrolls = Exhibit.new({name: "Dead Sea Scrolls", cost: 10})
+      imax = Exhibit.new({name: "IMAX",cost: 15})
+      patron_1 = Patron.new("Bob", 0)
+      patron_2 = Patron.new("Sally", 20)
+      patron_3 = Patron.new("Johnny", 5)
+
+      patron_1.add_interest("Gems and Minerals")
+      patron_1.add_interest("Dead Sea Scrolls")
+      patron_2.add_interest("Dead Sea Scrolls")
+      patron_3.add_interest("Dead Sea Scrolls")
+
+      dmns.add_exhibit(gems_and_minerals)
+      dmns.add_exhibit(dead_sea_scrolls)
+      dmns.add_exhibit(imax)
+
+      dmns.admit(patron_1)
+      dmns.admit(patron_2)
+      dmns.admit(patron_3)
+
       allow(dmns).to receive(:ticket_lottery_contestants).with(dead_sea_scrolls).and_return("Johnny", "Bob")
       winner = dmns.draw_lottery_winner(dead_sea_scrolls)
       expect(["Johnny", "Bob"]).to include(winner)
@@ -161,12 +182,54 @@ RSpec.describe Museum do
 
   describe '#announce_lottery_winner' do
     it 'announces the lottery winner returned by #draw_lottery_winner' do
+      dmns = Museum.new("Denver Museum of Nature and Science")
+      gems_and_minerals = Exhibit.new({name: "Gems and Minerals", cost: 0})
+      dead_sea_scrolls = Exhibit.new({name: "Dead Sea Scrolls", cost: 10})
+      imax = Exhibit.new({name: "IMAX",cost: 15})
+      patron_1 = Patron.new("Bob", 0)
+      patron_2 = Patron.new("Sally", 20)
+      patron_3 = Patron.new("Johnny", 5)
+
+      patron_1.add_interest("Gems and Minerals")
+      patron_1.add_interest("Dead Sea Scrolls")
+      patron_2.add_interest("Dead Sea Scrolls")
+      patron_3.add_interest("Dead Sea Scrolls")
+
+      dmns.add_exhibit(gems_and_minerals)
+      dmns.add_exhibit(dead_sea_scrolls)
+      dmns.add_exhibit(imax)
+
+      dmns.admit(patron_1)
+      dmns.admit(patron_2)
+      dmns.admit(patron_3)
+
       allow(dmns).to receive(:draw_lottery_winner).with(dead_sea_scrolls).and_return("Bob")
       result = dmns.announce_lottery_winner(dead_sea_scrolls)
       expect(result).to eq("Bob is the winner!")
     end
 
     it 'returns a message if there are no contestants' do
+      dmns = Museum.new("Denver Museum of Nature and Science")
+      gems_and_minerals = Exhibit.new({name: "Gems and Minerals", cost: 0})
+      dead_sea_scrolls = Exhibit.new({name: "Dead Sea Scrolls", cost: 10})
+      imax = Exhibit.new({name: "IMAX",cost: 15})
+      patron_1 = Patron.new("Bob", 0)
+      patron_2 = Patron.new("Sally", 20)
+      patron_3 = Patron.new("Johnny", 5)
+
+      patron_1.add_interest("Gems and Minerals")
+      patron_1.add_interest("Dead Sea Scrolls")
+      patron_2.add_interest("Dead Sea Scrolls")
+      patron_3.add_interest("Dead Sea Scrolls")
+
+      dmns.add_exhibit(gems_and_minerals)
+      dmns.add_exhibit(dead_sea_scrolls)
+      dmns.add_exhibit(imax)
+
+      dmns.admit(patron_1)
+      dmns.admit(patron_2)
+      dmns.admit(patron_3)
+     
       allow(dmns).to receive(:draw_lottery_winner).with(gems_and_minerals).and_return(nil)
       result = dmns.announce_lottery_winner(gems_and_minerals)
       expect(result).to eq("No winners for this lottery!")
