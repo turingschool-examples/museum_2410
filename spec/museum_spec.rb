@@ -99,6 +99,12 @@ RSpec.describe Museum do
     end
 
     describe "#lottery" do
+      before(:each) do
+        @dmns.admit(@patron_1)
+        @dmns.admit(@patron_2)
+        @dmns.admit(@patron_3)
+      end
+      
       it "determine ticket lottery contestants" do
         expect(@dmns.ticket_lottery_contestants(@dead_sea_scrolls)).to eq([@patron_1, @patron_2, @patron_3])
       end
