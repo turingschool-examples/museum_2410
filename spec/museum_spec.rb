@@ -134,4 +134,70 @@ RSpec.describe Museum do
       end
     end
   end
+
+  describe "#revenue" do
+    before(:each) do
+      @dmns.add_exhibit(@gems_and_minerals)
+      @dmns.add_exhibit(@dead_sea_scrolls)
+      @dmns.add_exhibit(@imax)
+
+      @tj = Patron.new("TJ", 7)
+      @tj.add_interest("IMAX")
+      @tj.add_interest("Dead Sea Scrolls")
+
+      @patron_1 = Patron.new("Bob", 10)
+      @patron_1.add_interest("Dead Sea Scrolls")
+      @patron_1.add_interest("IMAX")
+
+      @patron_2 = Patron.new("Sally", 20)
+      @patron_2.add_interest("IMAX")
+      @patron_2.add_interest("Dead Sea Scrolls")
+
+      @morgan = Patron.new("Morgan", 15)
+      @morgan.add_interest("Gems and Minerals")
+      @morgan.add_interest("Dead Sea Scrolls")
+
+    end
+
+    it "only allows admitance if patron can afford the exhibit cost" do
+      @dmns.admit(@tj)
+
+      expect(@tj.spending_money).to eq(7)
+    end
+
+    it "admits patron to exhibit in price range" do
+      @dmns.admit(@patron_1)
+
+      expect(@patron_1.spending_money).to eq(0)
+    end
+
+    it "admits patron to most expensive exhibit first and not the other" do
+      @dmns.admit(@patron_2)
+
+      expect(patron_2.spending_money).to eq(5)
+    end
+
+    it "admits patron with enough spending money to both exhibits" do
+      @dmns.admit(@morgan)
+
+      expect(@morgan.spending_money).to eq(5)
+    end
+
+    it "updates patrons list for each patron admitted to exhibit" do
+      @dmns.admit(@tj)
+      @dmns.admit(@patron_1)
+      @dmns.admit(@patron_2)
+      @dmns.admit(@morgan)
+
+      expect(@dmns.patrons_of_exhibits).to eq{}
+    end
+
+    it "can track museum revenue" do
+      @dmns.admit(@tj)
+      @dmns.admit(@patron_1)
+      @dmns.admit(@patron_2)
+      @dmns.admit(@morgan)
+    end
+
+  end
 end
