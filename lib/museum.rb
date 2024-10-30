@@ -21,5 +21,22 @@ class Museum
     return recommended
   end
 
-  
+  def admit(patron)
+    if !patrons.include?(patron)
+      @patrons << patron
+    end
+  end
+
+  def patrons_by_exhibit_interest
+    by_exhibit = {}
+    exhibits.each do |exhibit|
+      by_exhibit[exhibit] = []
+      patrons.each do |patron|
+        if patron.interests.include?(exhibit.name)
+          by_exhibit[exhibit] << patron
+        end
+      end
+    end
+    return by_exhibit
+  end
 end
