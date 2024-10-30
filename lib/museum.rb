@@ -4,6 +4,7 @@ class Museum
   def initialize(name)
     @name = name
     @exhibits = []
+    @patrons = []
   end
 
   def add_exhibit(exhibit)
@@ -19,5 +20,17 @@ class Museum
       end
     end
     reccomended
+  end
+  
+  def admit(patron)
+    @patrons << patron
+  end
+
+  def patrons_by_exhibit_interest
+    hash_of_exhibits_and_patrons = {}
+    
+    @exhibits.each do |exhibit|
+      hash_of_exhibits_and_patrons[exhibit] = []
+    end
   end
 end
